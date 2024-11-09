@@ -1,0 +1,17 @@
+2024-10-06 17:53:20,210 - INFO - Note: NumExpr detected 10 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-10-06 17:53:20,210 - INFO - NumExpr defaulting to 8 threads.
+2024-10-06 17:53:54,943 - INFO - New item added: Facebook message
+2024-10-06 17:56:11,196 - ERROR - OCR failed: tesseract is not installed or it's not in your PATH. See README file for more information.
+2024-10-06 17:56:21,642 - INFO - Note: NumExpr detected 10 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-10-06 17:56:21,643 - INFO - NumExpr defaulting to 8 threads.
+2024-10-06 17:56:33,124 - INFO - Note: NumExpr detected 10 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-10-06 17:56:33,124 - INFO - NumExpr defaulting to 8 threads.
+2024-10-06 17:57:05,318 - INFO - Note: NumExpr detected 10 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2024-10-06 17:57:05,318 - INFO - NumExpr defaulting to 8 threads.
+2024-10-06 17:57:05,540 - WARNING - Tesseract executable not found in PATH
+2024-10-06 17:57:05,540 - WARNING - Tesseract OCR is not available. OCR button disabled.
+2024-10-06 17:58:36,720 - WARNING - Tesseract executable not found in PATH
+2024-10-06 17:58:36,720 - WARNING - Tesseract OCR is not available. OCR button disabled.
+2024-10-06 18:00:03,873 - WARNING - Tesseract executable not found in PATH
+2024-10-06 18:00:03,873 - WARNING - Tesseract OCR is not available. OCR button disabled.
+2024-10-06 18:11:53,221 - ERROR - Failed to load image: 'ImageAnalysisApp' object has no attribute 'display_image'

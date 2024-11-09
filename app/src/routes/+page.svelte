@@ -1,6 +1,7 @@
-<!-- src/routes/+page.svelte -->
 <script lang="ts">
+    import "../app.css";
     import { fly } from 'svelte/transition';
+    import type { MarketplaceItem } from '$lib/types/marketplace';  // Create this type
     import CategorySelector from '$lib/components/ui/CategorySelector.svelte';
     import FilterSelector from '$lib/components/ui/FilterSelector.svelte';
     import SortSelector from '$lib/components/ui/SortSelector.svelte';
@@ -8,8 +9,8 @@
     import { Filter, FilterX } from 'lucide-svelte';
 
     let showFilterSelector = false;
-  
-    const items = [
+
+    const items: MarketplaceItem[] = [
       { name: 'Apple', price: 0.5, image: 'https://example.com/apple.jpg' },
       { name: 'Banana', price: 0.3, image: 'https://example.com/banana.jpg' },
       { name: 'Orange', price: 0.6, image: 'https://example.com/orange.jpg' },
@@ -26,7 +27,8 @@
 </script>
 
 <div class="page-container">
-    <div class="filter-shortcuts">
+    
+    <div class="filter-shortcuts" transition:fly={{ x: -40, duration: 300 }}>
         
     </div>
 

@@ -1,13 +1,15 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { fly, fade, slide } from 'svelte/transition';
-    import { Brain, CircleX, LogIn, User, LogOut, MessageCircle, Filter, FilterX } from 'lucide-svelte';
+    import { Brain, CircleX, LogIn, User, LogOut, MessageCircle, Filter, FilterX, FileText } from 'lucide-svelte';
     import Notifications from '$lib/overlays/NotificationsOverlay.svelte';
     import Favorites from '$lib/overlays/FavoritesOverlay.svelte';
     import Sales from '$lib/overlays/SalesOverlay.svelte';
     import Messages from '$lib/overlays/MessagesOverlay.svelte';
     import Profile from '$lib/overlays/SalesOverlay.svelte';
     import FilterSelector from '$lib/components/ui/FilterSelector.svelte';
+    import { goto } from '$app/navigation';
+    import "../app.css";  // Make sure this is at the top
 
     let activeLink = '/'; 
     let overlayState = {
@@ -19,29 +21,30 @@
     };
     let showFilterSelector = false;
 
-
     function toggleOverlay(overlayName: keyof typeof overlayState) {
         if (overlayName === 'messages') {
-            // Toggle messages independently
             overlayState.messages = !overlayState.messages;
         } else {
-            // Close all other overlays except messages
             overlayState = {
                 notifications: false,
                 favorites: false,
                 sales: false,
                 profile: false,
-                messages: overlayState.messages, // Preserve messages state
+                messages: overlayState.messages,
                 [overlayName]: !overlayState[overlayName]
             };
         }
         activeLink = overlayName;
     }
 
+    function navigateToOffers() {
+        goto('/offers');
+        activeLink = 'offers';
+    }
 </script>
 
 <div class="app-container">
-	<header>
+    <header>
         <h1>
             Iltatori
         </h1>
@@ -52,13 +55,16 @@
             {:else}
                 <Filter size={20} />
                 Filters
-
             {/if}
         </button>
         <div class="search-bar">
             <input type="text" placeholder="Hae...">
         </div>
         <div class="nav-links" transition:fly={{ y: 50, duration: 300 }}>
+            <button class="nav-link" class:active={activeLink === 'offers'} on:click={navigateToOffers}>
+                <FileText size={20} />
+                Tarjoukset
+            </button>
             <button class="nav-link" class:active={activeLink === 'notifications'} on:click={() => toggleOverlay('notifications')}>
                 <Brain size={20} />
                 Hälytykset
@@ -71,7 +77,6 @@
                 <Brain size={20} />
                 Myynnit
             </button>
-
             <button class="nav-link" class:active={activeLink === 'profile'} on:click={() => toggleOverlay('profile')}>
                 <User size={20} />
                 Oma
@@ -82,6 +87,8 @@
             </button>
         </div>
     </header>
+
+
 
 
     <main>
@@ -234,7 +241,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        /* z-index: 1000; */
         transition: right 300ms ease;
     }
 
@@ -336,4 +343,77 @@
         margin-left: 4rem;
     }
 
-  </style>
+    /* Make sure content areas are properly contained */
+    :global(.content-area) {
+        max-width: 1400px;  /* Or your preferred max width */
+        margin: 0 auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    /* Add smooth transitions for interactive elements */
+    :global(.interactive-element) {
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Ensure proper z-indexing */
+    :global(.overlay-content) {
+        z-index: 1000;
+    }
+
+    /* Add responsive container queries */
+    @container (min-width: 768px) {
+        .main-content {
+            padding: 2rem;
+        }
+    }
+
+    /* Improve focus states for accessibility */
+    :global(*:focus-visible) {
+        outline: 2px solid #1890ff;
+        outline-offset: 2px;
+    }
+
+
+    .main-content {
+        margin-top: 60px;  /* Match header height */
+        min-height: calc(100vh - 60px);  /* Full viewport height minus header */
+        width: 100%;
+        background-color: #f5f5f5;  /* Light background for contrast */
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 1rem;
+    }
+
+    /* Make sure content areas are properly contained */
+    :global(.content-area) {
+        max-width: 1400px;  /* Or your preferred max width */
+        margin: 0 auto;
+        padding: 1rem;
+        position: relative;
+    }
+
+    /* Add smooth transitions for interactive elements */
+    :global(.interactive-element) {
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Ensure proper z-indexing */
+    :global(.overlay-content) {
+        z-index: 1000;
+    }
+
+    /* Add responsive container queries */
+    @container (min-width: 768px) {
+        .main-content {
+            padding: 2rem;
+        }
+    }
+
+    /* Improve focus states for accessibility */
+    :global(*:focus-visible) {
+        outline: 2px solid #1890ff;
+        outline-offset: 2px;
+    }
+</style>
